@@ -41,7 +41,7 @@ octo-merge \
 
 * You can find you API token [here](https://github.com/settings/tokens)
 
-## Avilable strategies
+## Available Strategies
 
 ### MergeWithoutRebase
 
