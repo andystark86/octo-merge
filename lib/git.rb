@@ -45,6 +45,8 @@ class Git
   end
 
   def run(cmd)
+    puts "$: #{cmd}" if verbose?
+
     cmd = <<-CMD
       cd #{working_directory} &&
       #{cmd}
