@@ -26,6 +26,21 @@ module OctoMerge
         @git ||= Git.new(working_directory)
       end
 
+      # Fetch the read-only branch for the corresponding pull request and
+      # create a local branch to rebase the current master on.
+      #
+      # Read more: [Checking out pull requests locally](https://help.github.com/articles/checking-out-pull-requests-locally/)
+      def fetch(pull_request)
+        git.fetch "#{upstream} #{pull_request.number_branch}/head:#{pull_request.number_branch} --force"
+      end
+
+      def fetch_master
+        git.checkout(master)
+        git.fetch(upstream)
+        git.reset_hard("#{upstream}/#{master}")
+      end
+
+
       def upstream
         :upstream
       end

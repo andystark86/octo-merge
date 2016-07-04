@@ -21,8 +21,12 @@ module OctoMerge
       github_api_result.head.repo.ssh_url
     end
 
-    def branch
+    def remote_branch
       github_api_result.head.ref
+    end
+
+    def number_branch
+      "pull/#{number}"
     end
 
     def title

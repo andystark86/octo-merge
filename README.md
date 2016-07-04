@@ -43,52 +43,60 @@ octo-merge \
 
 ## Available Strategies
 
+* NOTE: All strategies are using read-only branches for a specific pull requests.
+        This way we avoid adding lot of remotes.
+* Read more: [Checking out pull requests locally](https://help.github.com/articles/checking-out-pull-requests-locally/)
+
 ### MergeWithoutRebase
 
-```ruby
-git.checkout(master)
-git.fetch(upstream)
-git.reset_hard("#{upstream}/#{master}")
+```
+# Reset master
+git checkout master
+git fetch upstream
+git reset --hard upstream/master
 
-pull_requests.each do |pull_request|
-  git.remote_add("#{pull_request.remote} #{pull_request.remote_url}")
-  git.fetch(pull_request.remote)
-  git.merge_no_ff("#{pull_request.remote}/#{pull_request.branch}")
-end
+# For each pull request
+  git fetch upstream pull/23/head:pull/23 --force"
+  git merge --no-ff pull/23
+  git branch -D pull/23
 ```
 
 ### MergeWithRebase
 
-```ruby
-git.checkout(master)
-git.fetch(upstream)
-git.reset_hard("#{upstream}/#{master}")
+```
+# Reset master
+git checkout master
+git fetch upstream
+git reset --hard upstream/master
 
-pull_requests.each do |pull_request|
-  git.remote_add("#{pull_request.remote} #{pull_request.remote_url}")
-  git.fetch(pull_request.remote)
-  git.checkout(pull_request.branch)
-  git.rebase(master)
-  git.checkout(master)
-  git.merge_no_ff(pull_request.branch)
-end
+# For each pull request
+  git fetch upstream pull/23/head:pull/23 --force"
+  git checkout pull/23
+  git rebase master
+
+  git checkout master
+  git merge --no-ff pull/23
+
+  git branch -D pull/23
 ```
 
 ### Rebase
 
-```ruby
-git.checkout(master)
-git.fetch(upstream)
-git.reset_hard("#{upstream}/#{master}")
+```
+# Reset master
+git checkout master
+git fetch upstream
+git reset --hard upstream/master
 
-pull_requests.each do |pull_request|
-  git.remote_add("#{pull_request.remote} #{pull_request.remote_url}")
-  git.fetch(pull_request.remote)
-  git.checkout(pull_request.branch)
-  git.rebase(master)
-  git.checkout(master)
-  git.rebase("#{pull_request.branch}")
-end
+# For each pull request
+  git fetch upstream pull/23/head:pull/23 --force"
+  git checkout pull/23
+  git rebase master
+
+  git checkout master
+  git rebase pull/23
+
+  git branch -D pull/23
 ```
 
 ## Development

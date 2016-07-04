@@ -28,6 +28,7 @@ class Git
 
   git :checkout
   git :commit
+  git :delete_branch, "branch -D"
   git :fetch
   git :merge_no_ff, "merge --no-ff"
   git :rebase

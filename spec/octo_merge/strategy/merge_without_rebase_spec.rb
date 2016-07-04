@@ -5,15 +5,14 @@ describe OctoMerge::Strategy::MergeWithoutRebase do
 
   let(:expected_history) do
 <<-'EXPECTED_HISTORY'.strip
-*   Merge remote-tracking branch 'bob/sunglasses'
+*   Merge remote branch 'bob/sunglasses'
 |\
 | * Adds sunglasses
-* |   Merge remote-tracking branch 'alice/cowboy_hat'
+* |   Merge remote branch 'alice/cowboy_hat'
 |\ \
 | * | Adds cowboy_hat
-* | | Adds piercing
 | |/
-|/|
+* | Adds piercing
 * | Adds tattoo
 |/
 * Adds earrrings
