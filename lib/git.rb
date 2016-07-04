@@ -13,6 +13,8 @@ class Git
   end
 
   def self.verbose!(is_verbose = true)
+    is_verbose = false if is_verbose.nil?
+
     @verbose = is_verbose
   end
 

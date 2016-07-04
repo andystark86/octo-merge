@@ -2,6 +2,6 @@
 
 require "octo_merge"
 
-Git.verbose!(ENV["VERBOSE"] || true)
+Git.verbose!(ENV["VERBOSE"])
 
 OctoMerge::CLI.run(ARGV)
