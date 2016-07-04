@@ -43,11 +43,21 @@ module OctoMerge
         # Sanitize input
         options[:dir] = File.expand_path(options[:dir])
         options[:strategy] = Object.const_get("OctoMerge::Strategy::#{options[:strategy]}")
-        options[:pull_requests] = OctoMerge::InteractivePullRequests.get(options) if options[:interactive]
+        options[:pull_requests] = get_interactive_pull_requests(options) if options[:interactive]
         options[:pull_requests] = options[:pull_requests].to_s.split(",")
 
         options
       end
+    end
+
+    # This hotfix will configure the API credentials before doing the API call.
+    def get_interactive_pull_requests(options)
+      OctoMerge.configure do |config|
+        config.login = options[:login]
+        config.password = options[:password]
+      end
+
+      OctoMerge::InteractivePullRequests.get(options)
     end
 
     def reset_cache
