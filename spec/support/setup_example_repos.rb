@@ -4,8 +4,6 @@ module SetupExampleRepos
       subject(:history) { mallory.history }
 
       let(:upstream) { SimpleGit.new(name: "upstream") }
-      let(:alice) { SimpleGit.new(name: "alice") }
-      let(:bob) { SimpleGit.new(name: "bob") }
       let(:mallory) { SimpleGit.new(name: "mallory") }
 
       let(:working_directory) { mallory.path }
@@ -13,8 +11,8 @@ module SetupExampleRepos
         instance_double(
           OctoMerge::PullRequest,
           remote: "alice",
-          remote_url: "../alice",
-          branch: "cowboy_hat",
+          remote_branch: "cowboy_hat",
+          number_branch: "pull/23",
           url: "example.com/23",
           title: "Adds cowboy hat",
           body: ""
@@ -24,8 +22,8 @@ module SetupExampleRepos
         instance_double(
           OctoMerge::PullRequest,
           remote: "bob",
-          remote_url: "../bob",
-          branch: "sunglasses",
+          remote_branch: "sunglasses",
+          number_branch: "pull/42",
           url: "example.com/42",
           title: "Adds sunglasses",
           body: "## Lorem ipsum\n\ndolor sit amet!"
@@ -47,29 +45,23 @@ module SetupExampleRepos
     SimpleGit.clear!
 
     upstream.create
-    alice.create
-    bob.create
-    mallory.create
-
-    alice.add_remote("upstream")
-    bob.add_remote("upstream")
-    mallory.add_remote("upstream")
-
-    # First commit
     upstream.add_item("earrrings")
+    upstream.checkout_branch("original-master")
 
-    alice.reset("upstream", "master")
-    alice.checkout_branch("cowboy_hat")
-    alice.add_item("cowboy_hat")
+    mallory.create
+    mallory.add_remote("upstream")
+    mallory.reset("upstream", "master")
 
-    # Second commit
+    upstream.checkout("master")
     upstream.add_item("tattoo")
-
-    bob.reset("upstream", "master")
-    bob.checkout_branch("sunglasses")
-    bob.add_item("sunglasses")
-
-    # Third commit
     upstream.add_item("piercing")
+
+    upstream.checkout("original-master")
+    upstream.checkout_branch("pull/23/head")
+    upstream.add_item("cowboy_hat")
+
+    upstream.checkout("original-master")
+    upstream.checkout_branch("pull/42/head")
+    upstream.add_item("sunglasses")
   end
 end

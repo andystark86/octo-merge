@@ -2,18 +2,27 @@ module OctoMerge
   module Strategy
     class MergeWithRebase < Base
       def run
-        git.checkout(master)
-        git.fetch(upstream)
-        git.reset_hard("#{upstream}/#{master}")
+        fetch_master
 
         pull_requests.each do |pull_request|
-          git.remote_add("#{pull_request.remote} #{pull_request.remote_url}")
-          git.fetch(pull_request.remote)
-          git.checkout(pull_request.branch)
+          fetch(pull_request)
+
+          git.checkout(pull_request.number_branch)
           git.rebase(master)
+
           git.checkout(master)
-          git.merge_no_ff(pull_request.branch)
+          merge(pull_request)
+
+          git.delete_branch(pull_request.number_branch)
         end
+      end
+
+      private
+
+      def merge(pull_request)
+        message = "Merge branch '#{pull_request.remote_branch}'"
+
+        git.merge_no_ff("-m \"#{message}\" #{pull_request.number_branch}")
       end
     end
   end
