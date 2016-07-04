@@ -12,6 +12,8 @@ require_relative 'support/webmock_stubs'
 
 require 'octo_merge'
 
+Git.verbose!(ENV["VERBOSE"] || false)
+
 RSpec.configure do |config|
   config.order = 'random'
 end

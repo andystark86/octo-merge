@@ -3,4 +3,6 @@
 require "bundler/setup"
 require "octo_merge"
 
+Git.verbose!(ENV["VERBOSE"] || true)
+
 OctoMerge::CLI.run(ARGV)

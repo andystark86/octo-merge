@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'open3'
 
 class SimpleGit
   REPOS_PATH = "tmp/repos"
@@ -86,11 +87,12 @@ class SimpleGit
       #{cmd}
     CMD
 
-    `#{cmd}`
+    # NOTE: Logging and debugging is writte to stderr
+    _stdin, stdout, _stderr = Open3.popen3(cmd)
+    stdout.read
   end
 
   def path
-    # @path ||= "#{REPOS_PATH}/#{name}"
     @path ||= File.absolute_path("#{REPOS_PATH}/#{name}")
   end
 end
