@@ -81,7 +81,16 @@ YML
         its(:dir) { is_expected.to eq(File.expand_path(".")) }
         its(:pull_requests) { is_expected.to eq(["23", "42"]) }
         its(:repo) { is_expected.to eq("rails/rails") }
+        its(:setup) { is_expected.to be(nil) }
         its(:strategy) { is_expected.to eq(OctoMerge::Strategy::MergeWithoutRebase) }
+
+        context "when setup is given" do
+          before do
+            subject.cli_options = { setup: true }
+          end
+
+          its(:setup) { is_expected.to be(true) }
+        end
       end
     end
   end

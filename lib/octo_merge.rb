@@ -10,6 +10,7 @@ require "octo_merge/interactive_pull_requests"
 require "octo_merge/list_pull_requests"
 require "octo_merge/options"
 require "octo_merge/pull_request"
+require "octo_merge/setup"
 require "octo_merge/strategy"
 
 module OctoMerge

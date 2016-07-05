@@ -27,6 +27,17 @@ Or install it yourself as:
 
     $ gem install octo-merge
 
+## Setup / Configure
+
+If you do not want to provide your GitHub login credentials every time you
+call `octo-merge` you can easily set these in your `~/.octo-merge.yml`.
+
+Feel free to use the included setup task:
+
+```
+octo-merge --setup
+```
+
 ## Examples
 
 ```
