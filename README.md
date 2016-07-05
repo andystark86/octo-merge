@@ -7,14 +7,14 @@ Use at your own risk!
 
 # OctoMerge
 
-`octo_merge` is a simple command line tool to merge GitHub pull requests using different strategies.
+`octo-merge` is a simple command line tool to merge GitHub pull requests using different strategies.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'octo_merge'
+gem 'octo-merge'
 ```
 
 And then execute:
@@ -23,7 +23,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install octo_merge
+    $ gem install octo-merge
 
 ## Examples
 
@@ -107,7 +107,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Deradon/octo_merge. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Deradon/octo-merge. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
