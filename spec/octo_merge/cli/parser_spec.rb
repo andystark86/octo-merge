@@ -37,6 +37,7 @@ Simple
     specify { expect(subject[:strategy]).to eq("Simple") }
 
     specify { expect(subject[:interactive]).to eq(true) }
+    specify { expect(subject[:setup]).to eq(nil) }
 
     context "with --help" do
       let(:args) { ["--help"] }
@@ -48,6 +49,12 @@ Simple
       let(:args) { ["--version"] }
 
       it { expect(parser).to receive(:exit) }
+    end
+
+    context "with --setup" do
+      let(:args) { ["--setup"] }
+
+      specify { expect(subject[:setup]).to eq(true) }
     end
   end
 end

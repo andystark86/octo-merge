@@ -1,3 +1,4 @@
+require "pathname"
 require "yaml"
 
 module OctoMerge
@@ -11,7 +12,9 @@ module OctoMerge
 
     option :dir
     option :pull_requests
+    option :query
     option :repo
+    option :setup
     option :strategy
 
     def [](key)
@@ -21,6 +24,14 @@ module OctoMerge
     def cli_options=(options)
       reset_cache
       @cli_options = options
+    end
+
+    def self.user_config_path
+      USER_CONFIG_PATH
+    end
+
+    def self.pathname
+      Pathname.new(CONFIG_FILE)
     end
 
     private

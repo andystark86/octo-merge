@@ -12,7 +12,7 @@ module OctoMerge
       end
 
       def parse!
-        setup
+        prepare
         opts.parse!(args)
         options
       end
@@ -21,24 +21,24 @@ module OctoMerge
 
       attr_reader :args
 
-      def setup
-        setup_banner
+      def prepare
+        prepare_banner
 
-        setup_application
+        prepare_application
 
         opts.separator ""
         opts.separator "Common options:"
 
-        setup_help
-        setup_version
+        prepare_help
+        prepare_version
       end
 
-      def setup_banner
+      def prepare_banner
         opts.banner = "Usage: octo-merge [options]"
         opts.separator ""
       end
 
-      def setup_application
+      def prepare_application
         opts.on("--repo=REPO", "Repository (e.g.: 'rails/rails')") do |repo|
           options[:repo] = repo
         end
@@ -70,16 +70,20 @@ module OctoMerge
         opts.on('--interactive', 'Select PullRequests within an interactive session') do |interactive|
           options[:interactive] = interactive
         end
+
+        opts.on('--setup', 'Setup') do |setup|
+          options[:setup] = setup
+        end
       end
 
-      def setup_help
+      def prepare_help
         opts.on_tail('-h', '--help', 'Display this screen') do
           puts opts
           exit
         end
       end
 
-      def setup_version
+      def prepare_version
         opts.on_tail('-v', '--version', 'Display the version') do
           puts OctoMerge::VERSION
           exit
