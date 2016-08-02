@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Deradon/octo-merge.svg?branch=master)](https://travis-ci.org/Deradon/octo-merge)
+
 **WARNING**
 
 This is still **WIP**. Using this tool will change your local master branch
