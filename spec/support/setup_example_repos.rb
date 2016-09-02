@@ -36,7 +36,8 @@ module SetupExampleRepos
         described_class.run(
           working_directory: working_directory,
           pull_requests: [alice_cowboy_hat, bob_sunglasses],
-          remote: "upstream"
+          remote: "upstream",
+          base_branch: "master"
         )
       end
     end

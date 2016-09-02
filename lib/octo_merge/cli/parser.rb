@@ -48,6 +48,11 @@ module OctoMerge
           options[:remote] = remote
         end
 
+        # TODO: Description && default
+        opts.on("--base_branch=base_branch", "Base branch (e.g.: 'master')") do |base_branch|
+          options[:base_branch] = base_branch
+        end
+
         opts.on("--dir=DIR", "Working directory (e.g.: '~/Dev/Rails/rails')") do |dir|
           options[:dir] = dir
         end

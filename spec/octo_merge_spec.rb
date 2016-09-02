@@ -15,6 +15,7 @@ describe OctoMerge do
         remote: "upstream",
         pull_request_numbers: [23, 42],
         working_directory: "foo/bar",
+        base_branch: "master",
         strategy: OctoMerge::Strategy::MergeWithoutRebase
       )
     end
@@ -32,7 +33,8 @@ describe OctoMerge do
         .with(
           context: context,
           strategy: OctoMerge::Strategy::MergeWithoutRebase,
-          remote: "upstream"
+          remote: "upstream",
+          base_branch: "master"
         )
         .and_return(execute)
 

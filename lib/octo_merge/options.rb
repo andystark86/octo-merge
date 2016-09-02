@@ -10,6 +10,7 @@ module OctoMerge
     option :login
     option :password
 
+    option :base_branch
     option :dir
     option :pull_requests
     option :query
@@ -39,6 +40,7 @@ module OctoMerge
 
     CONFIG_FILE = ".octo-merge.yml"
     DEFAULT_OPTIONS = {
+      base_branch: "master",
       dir: ".",
       remote: "origin",
       strategy: "MergeWithoutRebase"

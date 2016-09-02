@@ -2,7 +2,12 @@ require 'spec_helper'
 
 describe OctoMerge::Execute do
   subject(:execute) {
-    described_class.new(context: context, strategy: strategy, remote: remote)
+    described_class.new(
+      context: context,
+      strategy: strategy,
+      remote: remote,
+      base_branch: base_branch
+    )
   }
 
   let(:context) {
@@ -14,6 +19,7 @@ describe OctoMerge::Execute do
   }
   let(:strategy) { OctoMerge::Strategy::MergeWithoutRebase }
   let(:remote) { "upstream" }
+  let(:base_branch) { "master" }
 
   let(:pull_request) { instance_double(OctoMerge::PullRequest) }
   let(:another_pull_request) { instance_double(OctoMerge::PullRequest) }
@@ -28,6 +34,7 @@ describe OctoMerge::Execute do
     its(:working_directory) { is_expected.to eq("foo/bar") }
     its(:pull_requests) { is_expected.to eq([pull_request, another_pull_request]) }
     its(:remote) { is_expected.to eq(remote) }
+    its(:base_branch) { is_expected.to eq(base_branch) }
   end
 
   describe "#run" do
