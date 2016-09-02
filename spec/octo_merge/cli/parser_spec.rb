@@ -17,6 +17,8 @@ myrails
 label:pr
 --repo
 rails
+--remote
+upstream
 --strategy
 Simple
 --interactive
@@ -34,6 +36,7 @@ Simple
     specify { expect(subject[:pull_requests]).to eq("23,42") }
     specify { expect(subject[:query]).to eq("label:pr") }
     specify { expect(subject[:repo]).to eq("rails") }
+    specify { expect(subject[:remote]).to eq("upstream") }
     specify { expect(subject[:strategy]).to eq("Simple") }
 
     specify { expect(subject[:interactive]).to eq(true) }

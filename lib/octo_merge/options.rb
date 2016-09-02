@@ -16,6 +16,7 @@ module OctoMerge
     option :repo
     option :setup
     option :strategy
+    option :remote
 
     def [](key)
       data[key]
@@ -39,6 +40,7 @@ module OctoMerge
     CONFIG_FILE = ".octo-merge.yml"
     DEFAULT_OPTIONS = {
       dir: ".",
+      remote: "origin",
       strategy: "MergeWithoutRebase"
     }
     USER_CONFIG_PATH = File.expand_path("~/#{CONFIG_FILE}")

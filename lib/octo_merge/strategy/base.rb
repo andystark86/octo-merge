@@ -5,11 +5,12 @@
 module OctoMerge
   module Strategy
     class Base
-      attr_reader :working_directory, :pull_requests
+      attr_reader :working_directory, :pull_requests, :remote
 
-      def initialize(working_directory:, pull_requests:)
+      def initialize(working_directory:, pull_requests:, remote:)
         @working_directory = working_directory
         @pull_requests = pull_requests
+        @remote = remote
       end
 
       def self.run(*args)
@@ -31,18 +32,13 @@ module OctoMerge
       #
       # Read more: [Checking out pull requests locally](https://help.github.com/articles/checking-out-pull-requests-locally/)
       def fetch(pull_request)
-        git.fetch "#{upstream} #{pull_request.number_branch}/head:#{pull_request.number_branch} --force"
+        git.fetch "#{remote} #{pull_request.number_branch}/head:#{pull_request.number_branch} --force"
       end
 
       def fetch_master
         git.checkout(master)
-        git.fetch(upstream)
-        git.reset_hard("#{upstream}/#{master}")
-      end
-
-
-      def upstream
-        :upstream
+        git.fetch(remote)
+        git.reset_hard("#{remote}/#{master}")
       end
 
       def master

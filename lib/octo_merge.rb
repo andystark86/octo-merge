@@ -15,14 +15,14 @@ require "octo_merge/strategy"
 
 module OctoMerge
   class << self
-    def run(repo:, pull_request_numbers:, working_directory:, strategy:)
+    def run(repo:, remote:, pull_request_numbers:, working_directory:, strategy:)
       context = Context.new(
         working_directory: working_directory,
         repo: repo,
         pull_request_numbers: pull_request_numbers
       )
 
-      Execute.new(context: context, strategy: strategy).run
+      Execute.new(context: context, strategy: strategy, remote: remote).run
     end
 
     def configure

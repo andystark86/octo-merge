@@ -11,6 +11,7 @@ describe OctoMerge::CLI do
       dir: "rails",
       pull_requests: "23,42",
       repo: "rails",
+      remote: "upstream",
       strategy: "simple",
       setup: false
     )
@@ -44,6 +45,7 @@ describe OctoMerge::CLI do
       expect(OctoMerge).to receive(:run).with(
         pull_request_numbers: "23,42",
         repo: "rails",
+        remote: "upstream",
         strategy: "simple",
         working_directory: "rails"
       ).and_return(true)

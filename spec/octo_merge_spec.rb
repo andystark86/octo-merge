@@ -12,6 +12,7 @@ describe OctoMerge do
     after do
       OctoMerge.run(
         repo: "rails/rails",
+        remote: "upstream",
         pull_request_numbers: [23, 42],
         working_directory: "foo/bar",
         strategy: OctoMerge::Strategy::MergeWithoutRebase
@@ -28,7 +29,11 @@ describe OctoMerge do
         .and_return(context)
 
       expect(OctoMerge::Execute).to receive(:new)
-        .with(context: context, strategy: OctoMerge::Strategy::MergeWithoutRebase)
+        .with(
+          context: context,
+          strategy: OctoMerge::Strategy::MergeWithoutRebase,
+          remote: "upstream"
+        )
         .and_return(execute)
 
       expect(execute).to receive(:run)

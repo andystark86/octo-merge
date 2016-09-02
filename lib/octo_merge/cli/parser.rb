@@ -43,6 +43,11 @@ module OctoMerge
           options[:repo] = repo
         end
 
+        # TODO: Description && default
+        opts.on("--remote=remote", "Remote (e.g.: 'upstream')") do |remote|
+          options[:remote] = remote
+        end
+
         opts.on("--dir=DIR", "Working directory (e.g.: '~/Dev/Rails/rails')") do |dir|
           options[:dir] = dir
         end
