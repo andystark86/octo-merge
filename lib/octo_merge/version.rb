@@ -1,3 +1,3 @@
 module OctoMerge
-  VERSION = "0.7.0.pre"
+  VERSION = "0.7.0.rc1"
 end
