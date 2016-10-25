@@ -11,7 +11,8 @@ describe OctoMerge::CLI do
       dir: "rails",
       pull_requests: "23,42",
       repo: "rails",
-      strategy: "simple"
+      strategy: "simple",
+      setup: false
     )
   }
 
@@ -47,6 +48,21 @@ describe OctoMerge::CLI do
         working_directory: "rails"
       ).and_return(true)
       cli.run
+    end
+
+    context "with setup set in options" do
+      let(:options) {
+        instance_double(OctoMerge::Options,
+          login: "me",
+          password: "42",
+          setup: true
+        )
+      }
+
+      it "calls OctoMerge::Setup.run" do
+        expect(OctoMerge::Setup).to receive(:run).with(options).and_return(true)
+        cli.run
+      end
     end
   end
 end

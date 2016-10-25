@@ -14,7 +14,12 @@ module OctoMerge
 
     def run
       configure
-      execute
+
+      if options.setup
+        setup
+      else
+        execute
+      end
     end
 
     private
@@ -24,6 +29,10 @@ module OctoMerge
         config.login = options.login
         config.password = options.password
       end
+    end
+
+    def setup
+      Setup.run(options)
     end
 
     def execute

@@ -41,7 +41,7 @@ module OctoMerge
     end
 
     def list
-      @list = OctoMerge::ListPullRequests.new(repo: repo, query: query)
+      @list ||= OctoMerge::ListPullRequests.new(repo: repo, query: query)
     end
   end
 end
