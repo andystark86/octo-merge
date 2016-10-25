@@ -35,7 +35,7 @@ module OctoMerge
     def setup_project_config_file
       setup(
         name: "project",
-        path: Options.pathname.realpath.to_s,
+        path: Options.pathname,
         attributes: [:repo, :strategy, :query],
         default: false
       )

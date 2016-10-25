@@ -1,4 +1,3 @@
-require "pathname"
 require "yaml"
 
 module OctoMerge
@@ -31,7 +30,7 @@ module OctoMerge
     end
 
     def self.pathname
-      Pathname.new(CONFIG_FILE)
+      File.expand_path("./#{CONFIG_FILE}")
     end
 
     private

@@ -15,7 +15,7 @@ describe OctoMerge::Setup do
   }
 
   let(:user_config_path) { OctoMerge::Options.user_config_path }
-  let(:project_config_path) { OctoMerge::Options.pathname.realpath.to_s }
+  let(:project_config_path) { OctoMerge::Options.pathname }
 
   describe "#run" do
     subject { setup.run }
